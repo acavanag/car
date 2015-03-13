@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86087DFF1AB28DA4007C719C /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86087DFE1AB28DA4007C719C /* NetworkEngine.swift */; };
 		8657AFAA1AB27B5700FC9FE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8657AFA91AB27B5700FC9FE5 /* AppDelegate.swift */; };
 		8657AFAD1AB27B5700FC9FE5 /* ACCar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8657AFAB1AB27B5700FC9FE5 /* ACCar.xcdatamodeld */; };
 		8657AFAF1AB27B5700FC9FE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8657AFAE1AB27B5700FC9FE5 /* ViewController.swift */; };
@@ -14,6 +15,7 @@
 		8657AFB41AB27B5700FC9FE5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8657AFB31AB27B5700FC9FE5 /* Images.xcassets */; };
 		8657AFB71AB27B5700FC9FE5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8657AFB51AB27B5700FC9FE5 /* LaunchScreen.xib */; };
 		8657AFC31AB27B5700FC9FE5 /* ACCarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8657AFC21AB27B5700FC9FE5 /* ACCarTests.swift */; };
+		8657AFD11AB281DB00FC9FE5 /* CameraEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8657AFD01AB281DB00FC9FE5 /* CameraEngine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86087DFE1AB28DA4007C719C /* NetworkEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 		8657AFA41AB27B5700FC9FE5 /* ACCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8657AFA81AB27B5700FC9FE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8657AFA91AB27B5700FC9FE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +41,9 @@
 		8657AFBC1AB27B5700FC9FE5 /* ACCarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACCarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8657AFC11AB27B5700FC9FE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8657AFC21AB27B5700FC9FE5 /* ACCarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCarTests.swift; sourceTree = "<group>"; };
+		8657AFCE1AB281DA00FC9FE5 /* ACCar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ACCar-Bridging-Header.h"; sourceTree = "<group>"; };
+		8657AFCF1AB281DB00FC9FE5 /* CameraEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraEngine.h; sourceTree = "<group>"; };
+		8657AFD01AB281DB00FC9FE5 /* CameraEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraEngine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,10 @@
 				8657AFB51AB27B5700FC9FE5 /* LaunchScreen.xib */,
 				8657AFAB1AB27B5700FC9FE5 /* ACCar.xcdatamodeld */,
 				8657AFA71AB27B5700FC9FE5 /* Supporting Files */,
+				8657AFCF1AB281DB00FC9FE5 /* CameraEngine.h */,
+				8657AFD01AB281DB00FC9FE5 /* CameraEngine.m */,
+				8657AFCE1AB281DA00FC9FE5 /* ACCar-Bridging-Header.h */,
+				86087DFE1AB28DA4007C719C /* NetworkEngine.swift */,
 			);
 			path = ACCar;
 			sourceTree = "<group>";
@@ -215,6 +225,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8657AFD11AB281DB00FC9FE5 /* CameraEngine.m in Sources */,
+				86087DFF1AB28DA4007C719C /* NetworkEngine.swift in Sources */,
 				8657AFAF1AB27B5700FC9FE5 /* ViewController.swift in Sources */,
 				8657AFAD1AB27B5700FC9FE5 /* ACCar.xcdatamodeld in Sources */,
 				8657AFAA1AB27B5700FC9FE5 /* AppDelegate.swift in Sources */,
@@ -340,9 +352,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ACCar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ACCar/ACCar-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
@@ -350,9 +366,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ACCar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ACCar/ACCar-Bridging-Header.h";
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};
@@ -409,6 +428,7 @@
 				8657AFC81AB27B5700FC9FE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8657AFC91AB27B5700FC9FE5 /* Build configuration list for PBXNativeTarget "ACCarTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +437,7 @@
 				8657AFCB1AB27B5700FC9FE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

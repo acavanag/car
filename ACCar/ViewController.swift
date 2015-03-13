@@ -8,18 +8,32 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CameraEngineDelegate {
 
+    var imageView = UIImageView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.view.addSubview(imageView)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        imageView.frame = self.view.bounds
+        CameraEngine.sharedInstance().delegate = self
+        CameraEngine.sharedInstance().start()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
+    func didCaptureFrame(pixelBrightness: NSData!, image: UIImage!) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            println(pixelBrightness.length)
+            self.imageView.image = image
+        })
+    }
 }
 
