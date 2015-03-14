@@ -3,3 +3,4 @@
 //
 
 #import "CameraEngine.h"
+#import "SRWebSocket.h"

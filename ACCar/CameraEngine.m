@@ -36,6 +36,8 @@
     NSError *error = nil;
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     session.sessionPreset = AVCaptureSessionPreset352x288;
+    //session.sessionPreset = AVCaptureSessionPresetLow;
+    //session.sessionPreset = AVCaptureSessionPreset640x480;
     
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
@@ -69,6 +71,8 @@
         
         void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
         
+        
+        
         //size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
         size_t width = CVPixelBufferGetWidth(imageBuffer);
         size_t height = CVPixelBufferGetHeight(imageBuffer);
@@ -98,6 +102,7 @@
         }
 
         NSData *data = [NSData dataWithBytes:imageBrightness length:(width * height)];
+        //NSData *data = [NSData dataWithBytes:baseAddress length:(width * height)];
         
         free(imageBrightness);
         free(baseAddressGray);

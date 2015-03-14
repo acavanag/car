@@ -15,6 +15,8 @@ class ViewController: UIViewController, CameraEngineDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(imageView)
+        imageView.contentMode = .ScaleAspectFit
+        NetworkEngine.sharedInstance.openConnection()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -23,15 +25,10 @@ class ViewController: UIViewController, CameraEngineDelegate {
         CameraEngine.sharedInstance().delegate = self
         CameraEngine.sharedInstance().start()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     func didCaptureFrame(pixelBrightness: NSData!, image: UIImage!) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            println(pixelBrightness.length)
+            NetworkEngine.sharedInstance.transmitFrame(pixelBrightness)
             self.imageView.image = image
         })
     }

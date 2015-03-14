@@ -8,23 +8,57 @@
 
 import Foundation
 
-private let kAddress = "192.168.5.1:3000"
+private let kAddress = "ws://192.168.5.140:8080"
 private let _sharedInstance = NetworkEngine()
 
-class NetworkEngine {
+class NetworkEngine : NSObject, SRWebSocketDelegate {
     
-    private var opQueue = NSOperationQueue()
+    private var socket: SRWebSocket!
+    private var socketIsOpen: Bool = false
+    
+    private var sent: Int = 0
     
     class var sharedInstance: NetworkEngine {
         return _sharedInstance
     }
     
-    func transmitData(data: NSData) {
-        
-        let request = NSMutableURLRequest(URL: NSURL(string: kAddress)!)
-        
-        //NSURLConnection.sendAsynchronousRequest(request, queue: <#NSOperationQueue!#>, completionHandler: <#(NSURLResponse!, NSData!, NSError!) -> Void##(NSURLResponse!, NSData!, NSError!) -> Void#>)
-        
+    private override init() {}
+    
+    func openConnection() {
+        socket = SRWebSocket(URL: NSURL(string: kAddress)!)
+        socket.delegate = self
+        socket.open()
+    }
+    
+    func closeConnection() {
+        socketIsOpen = false
+        socket.close()
+        socket = nil
+    }
+    
+    func transmitFrame(data: NSData) {
+        if socket != nil && socketIsOpen == true {
+            socket.send(data)
+            println("sent: \(++sent)")
+        }
+    }
+    
+    internal func webSocketDidOpen(webSocket: SRWebSocket!) {
+        println(__FUNCTION__)
+        socketIsOpen = true
+        socket.send("0")
+    }
+    
+    internal func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
+        println(__FUNCTION__)
+    }
+    
+    internal func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
+        println(error)
+    }
+    
+    internal func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject!) {
+        println(message)
     }
     
 }
